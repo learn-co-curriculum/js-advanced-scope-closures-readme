@@ -151,7 +151,7 @@ So here, our returned functions provides some capability that JavaScript objects
 ```js
 
   class Item {
-    constructor(manufacturePrice, marketType){
+    constructor(name, manufacturePrice, marketType){
       this.name = name
       this.manufacturePrice = manufacturePrice
     }
