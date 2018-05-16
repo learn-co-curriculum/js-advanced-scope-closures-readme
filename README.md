@@ -208,7 +208,7 @@ As you see in the above code, we need to declare our `ItemId` variable outside o
 function createItem(){
   let ItemId = 0
   // return the class
-  return class {
+  return class Item {
     constructor(manufacturePrice){
       this.name = name
       this.manufacturePrice = manufacturePrice
@@ -238,3 +238,5 @@ The above code may look complicated, but our only change is to wrap the code in 
 ### Summary
 
 In this lesson, we explored an interesting feature of JavaScript functions closures.  A closure is a feature in JavaScript such that a function holds onto the variables that it had access to when it was declared.  Closures can be used to declare functions that have specific variables always defined.  JavaScript developers also take advantage of closures to encapsulate data, as we can declare our functions in such a way that the data is only accessible from the returned function, with no way to overwrite the variables captured by the closure.    
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/js-advanced-scope-closures-readme'>Closures</a> on Learn.co and start learning to code for free.</p>
