@@ -19,7 +19,7 @@ As you may have seen, JavaScript gives us mechanisms to construct objects with a
       this.manufacturePrice = manufacturePrice
     }
     retailPrice(marketMultiplier){
-      return marketMultiplier * this.manufacturePrice;
+      return marketMultiplier * this.manufacturePrice
     }
   }
 
@@ -34,7 +34,7 @@ As you may have seen, JavaScript gives us mechanisms to construct objects with a
   // 10
 ```
 
-In the code above, we use a class constructor to create different objects.  The objects share behavior and vary in their data.  Each item has a different `manufacturePrice`.  The `marketMultiplier` represents the varying difference in price for different markets.  For example, above our `tennisShoe` by `1.5` to accommodate for our New York and LA markets.  In our suburban market, the `marketMultiplier` of our `tshirt` is `1`, or not marked up.  
+In the code above, we use a class constructor to create different objects.  The objects share behavior and vary in their data.  Each item has a different `manufacturePrice`.  The `marketMultiplier` represents the varying difference in price for different markets.  For example, above our `tennisShoe` was multiplied by `1.5` to accommodate for our New York and LA markets.  In our suburban market, the `marketMultiplier` of our `tshirt` is `1`, or not marked up.  
 
 What may be surprising is that in JavaScript, we can also create **functions** that share specific capabilities but change others.  So just like we can create objects as little units of work, we can also create functions.
 
@@ -55,7 +55,7 @@ Let's pay careful attention to what happened in the above code.  We declared a f
 
 ```javascript
   const retailPriceForTen = retailPriceMaker(10)
-  // the execution of retailPriceMaker returns a function that takes one argument
+  // The execution of retailPriceMaker returns a function that takes one argument
   // We assign this returned function to a variable called retailPriceForTen, and then can call the returned function by referencing retailPriceForTen
   retailPriceForTen(1.5)
   // 15
@@ -94,14 +94,17 @@ function retailPriceMaker(manufacturePrice){
 const retailPriceForNine = retailPriceMaker(9)
 
 retailPriceForNine
-// ƒ (marketType){
+// ƒ (marketMultiplier){
 //  return marketMultiplier * manufacturePrice;
 // }  
+
+retailPriceForNine(2)
+// 18
 ```
 
-And if you type the `manufacturePrice` into the console, you will see that it is not defined in the current global scope.  Yet, somehow, when we execute this `retailPriceForNine` function it knows that the `manufacturePrice` is 9.  It knows this, even though `retailPriceForNine` points to a function that does not have the variable defined in its execution scope.  So how does the function have a value for `manufacturePrice`?  Placing a debugger into our code and running it in our chrome console show us.  
+And if you type the `manufacturePrice` into the console, you will see that it is not defined in the current global scope.  Yet, somehow, when we execute this `retailPriceForNine` function it knows that the `manufacturePrice` is 9.  It knows this, even though `retailPriceForNine` points to a function that does not have the variable defined in its execution scope.  So how does the function have a value for `manufacturePrice`?  Placing a debugger into our code and running it in our chrome console shows us.  
 
-![curriculum](https://curriculum-content.s3.amazonaws.com/web-development/js/advanced-scope/closures-readme/chrome-debugger-closures.png)
+![retailPriceMaker](retailPriceMaker.png)
 
 We see that `manufacturePrice` price is defined because of a closure.  A closure is the attribute that all JavaScript functions have: *JavaScript functions hold onto the scope that they had when they were declared*.  Let's take a look at our code again to see how we made use of a closure.  
 
@@ -120,11 +123,11 @@ retailPriceForNine(2)
 
 So every time we execute the `retailPriceMaker` function we are declaring a new function.  That's what our `retailPriceMaker` function does: declare a function that it then returns.  And when that function is declared, `manufacturePrice` is in scope.  So it doesn't matter that `manufacturePrice` is not in scope when we later execute a function.  There is a closure such that the function that `retailPriceMaker` returns holds onto the scope it was declared with.  This becomes a very powerful feature in JavaScript.  Closures allow us to build functions that have their own capabilities.  
 
-So just like we can return a function called `retailPriceForNine` and then see the `retailPrice` returned with various `marketMultiplier`s passed through, we can construct another function called `retailPriceForSixteen` for say a different Item.
+So just like we can return a function called `retailPriceForNine` and then see the `retailPrice` returned with various `marketMultiplier`s passed through, we can construct another function called `retailPriceForSixteen` for, say, a different Item.
 
 ```js
 function retailPriceMaker(manufacturePrice){
-  return function(marketType){
+  return function(marketMultiplier){
     return marketMultiplier * manufacturePrice;
   }
 }
@@ -151,29 +154,30 @@ So here, our returned functions provides some capability that JavaScript objects
 ```js
 
   class Item {
-    constructor(name, manufacturePrice, marketType){
+    constructor(name, manufacturePrice){
       this.name = name
       this.manufacturePrice = manufacturePrice
     }
-    retailPrice(marketType){
-      let manufacturePrice;
-      return function(marketType){
-        return marketMultiplier * manufacturePrice;
-      }
+    retailPrice(marketMultiplier){
+      return marketMultiplier * this.manufacturePrice
     }
   }
 
   let tennisShoe = new Item('tennis shoe', 10)
   // {name:  'tennis shoe', manufacturePrice: 10}
+  tennisShoe.retailPrice(2)
+  // 20
   tennisShoe.manufacturePrice = 4
   // {name:  'tennis shoe', manufacturePrice: 4}
+  tennisShoe.retailPrice(2)
+  // 8
 ```
 
- But we our attributes can be made truly private when using a closure.  
+ But our attributes can be made truly private when using a closure.  
 
  ```js
  function retailPriceMaker(manufacturePrice){
-   return function(marketType){
+   return function(marketMultiplier){
      return marketMultiplier * manufacturePrice
    }
  }
@@ -187,16 +191,15 @@ Here, once we invoke our `retailPriceMaker` to return the `retailPriceForNine` f
 Another use case for closures occurs when we declare our classes.  Because JavaScript classes are just syntactic sugar for functions, we can use closures with our classes as well.  When would we want to do this?  Let's modify our Item class a little.
 
 ```js
-
 let ItemId = 0
 class Item {
-  constructor(manufacturePrice){
+  constructor(name, manufacturePrice){
     this.name = name
     this.manufacturePrice = manufacturePrice
     this.id = ++ItemId;
   }
-  retailPrice(marketType){
-    return marketMultiplier * manufacturePrice
+  retailPrice(marketMultiplier){
+    return marketMultiplier * this.manufacturePrice;
   }
 }
 ```
@@ -215,8 +218,8 @@ function createItem(){
       this.id = ++ItemId;
     }
 
-    retailPrice(marketType){
-      return marketMultiplier * manufacturePrice;
+    retailPrice(marketMultiplier){
+      return marketMultiplier * this.manufacturePrice;
     }
   }
 }
