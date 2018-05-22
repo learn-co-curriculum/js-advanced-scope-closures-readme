@@ -151,7 +151,7 @@ So here, our returned functions provides some capability that JavaScript objects
 ```js
 
   class Item {
-    constructor(name, manufacturePrice, marketType){
+    constructor(name, manufacturePrice, marketType, name){
       this.name = name
       this.manufacturePrice = manufacturePrice
     }
@@ -190,7 +190,7 @@ Another use case for closures occurs when we declare our classes.  Because JavaS
 
 let ItemId = 0
 class Item {
-  constructor(manufacturePrice){
+  constructor(manufacturePrice, name){
     this.name = name
     this.manufacturePrice = manufacturePrice
     this.id = ++ItemId;
@@ -209,7 +209,7 @@ function createItem(){
   let ItemId = 0
   // return the class
   return class {
-    constructor(manufacturePrice){
+    constructor(manufacturePrice, name){
       this.name = name
       this.manufacturePrice = manufacturePrice
       this.id = ++ItemId;
