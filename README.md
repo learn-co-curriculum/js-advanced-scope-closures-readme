@@ -209,7 +209,7 @@ function createItem(){
   let ItemId = 0
   // return the class
   return class {
-    constructor(manufacturePrice){
+    constructor(name, manufacturePrice){
       this.name = name
       this.manufacturePrice = manufacturePrice
       this.id = ++ItemId;
