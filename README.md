@@ -139,7 +139,7 @@ have the variable defined in its execution scope. So how does the function have
 a value for `manufacturePrice`? Placing a debugger into our code and running it
 in our chrome console shows us.
 
-![retailPriceMaker](retailPriceMaker.png)
+![retailPriceMaker][retailpricemaker]
 
 We see that `manufacturePrice` price is defined because of a closure. A closure
 is the attribute that all JavaScript functions have: _JavaScript functions hold
@@ -326,3 +326,5 @@ developers also take advantage of closures to encapsulate data, as we can
 declare our functions in such a way that the data is only accessible from the
 returned function, with no way to overwrite the variables captured by the
 closure.
+
+[retailpricemaker]: http://curriculum-content.s3.amazonaws.com/web-development/retailPriceMaker.png
