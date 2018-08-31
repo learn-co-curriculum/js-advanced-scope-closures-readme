@@ -24,12 +24,12 @@ class Item {
   }
 }
 
-let tennisShoe = new Item('tennis shoe', 30);
+let tennisShoe = new Item("tennis shoe", 30);
 // {name:  'tennis shoe', manufacturePrice: 30}
 tennisShoe.retailPrice(1.5);
 // 45
 
-let tshirt = new Item('tshirt', 10);
+let tshirt = new Item("tshirt", 10);
 // {name:  'tshirt', manufacturePrice: 10}
 tshirt.retailPrice(1);
 // 10
@@ -92,14 +92,21 @@ retailPriceForThree(1.5);
 // 4.5
 ```
 
-So now, by invoking `retailPriceMaker` we return a function that has its own
-unique attribute of a `manufacturePrice`. And we use this attribute at a later
-time. So just like we earlier defined a `Item` class returns objects with a
-`manufacturePrice`, here we defined a function that returns functions that has a
-`manufacturePrice`. The difference is we avoided a lot of code of declaring a
-class by just giving this function knowledge of `manufacturePrice`. So in
-JavaScript, functions can hold onto state in the same way that objects can. This
-makes sense, as functions are first class objects.
+By invoking `retailPriceMaker`, we return a function. That function has its own
+unique attribute of a `manufacturePrice`, which is passed in as an argument to
+`retailPriceMaker`. We can see this value being passed in when
+`retailPriceMaker(3)` is invoked.
+
+The inner function takes in a second argument, `marketMultiplier`, which we can
+see examples of when invoking `retailPriceForThree(1.1)` and
+`retailPriceForThree(1.5)`.
+
+Earlier, we defined a `Item` class returns objects with a `manufacturePrice`.
+Here, we defined a function that returns _a function_ that has a
+`manufacturePrice` value stored inside.
+
+In JavaScript, functions can hold onto state in the same way that objects can.
+This makes sense, as functions are first class objects.
 
 Ok, now let's take an even deeper look as to what is happening in the code. Look
 at the code again, below. As you see, `retailPriceForNine` points to our
@@ -213,7 +220,7 @@ class Item {
   }
 }
 
-let tennisShoe = new Item('tennis shoe', 10);
+let tennisShoe = new Item("tennis shoe", 10);
 // {name:  'tennis shoe', manufacturePrice: 10}
 tennisShoe.retailPrice(2);
 // 20
@@ -285,10 +292,10 @@ const Item = createItem();
 // Execute createItem and assign the returned class to equal Item.
 // We only need to call createItem() one time in our codebase.
 
-let tennisShoe = new Item('tennis shoe', 15);
+let tennisShoe = new Item("tennis shoe", 15);
 // {id: 1, name: 'tennis shoe', manufacturePrice: 15}
 
-let tshirt = new Item('t shirt', 8);
+let tshirt = new Item("t shirt", 8);
 // {id: 2, name: 't shirt', manufacturePrice: 8}
 ```
 
