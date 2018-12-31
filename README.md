@@ -311,7 +311,7 @@ closures comes into play every time we call `new Item()`. When we construct a
 new instance, the constructor method references and modifies the `ItemId`
 variable. Our constructor method can do so because when its class was declared
 `ItemId` was accessible, and the class holds onto the variables in scope when it
-was declared. So using closures allows to construct a class that has access to
+was declared. So using closures allows us to construct a class that has access to
 variables that are only available to functions that referenced the variable when
 the functions were declared. Thus it allows us to better create the scope that
 we want for `ItemId`.
