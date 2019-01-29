@@ -46,7 +46,7 @@ What may be surprising is that in JavaScript, we can also create **functions**
 that share specific capabilities but change others. So just like we can create
 objects as little units of work, we can also create functions.
 
-How do you create a function? Its not too difficult, we simply return a
+How do you create a function? It's not too difficult, we simply return a
 function from another function.
 
 ```js
