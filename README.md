@@ -206,8 +206,8 @@ us to ever change this attribute. This attribute is only even readable from
 inside the function, and we have defined our function in such a way that there
 is no other way to ever write the `manufacturePrice`.
 
-So here, our returned functions provides some capability that JavaScript objects
-do not. Encapsulation. Remember that we can always change the data of an object.
+So here, our returned functions provide some capability that JavaScript objects
+do not: encapsulation. Remember that we can always change the data of an object.
 
 ```js
 class Item {
