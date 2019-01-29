@@ -101,7 +101,7 @@ The inner function takes in a second argument, `marketMultiplier`, which we can
 see examples of when invoking `retailPriceForThree(1.1)` and
 `retailPriceForThree(1.5)`.
 
-Earlier, we defined a `Item` class returns objects with a `manufacturePrice`.
+Earlier, we defined an `Item` class that returns objects with a `manufacturePrice`.
 Here, we defined a function that returns _a function_ that has a
 `manufacturePrice` value stored inside.
 
